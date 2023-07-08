@@ -1,0 +1,73 @@
+IMAGE_NAME = "bento/ubuntu-22.04"
+WORKER_NODES = 2
+WORKER_IP_RANGE = "192.168.13"
+API_SERVER_IP = "192.168.13.37"
+CLUSTER_NAME = "enron.corp.k8s.local"
+VM_MEMORY = "2048"
+DNS_SERVER = "1.1.1.1" 
+KUBERNETES_VERSION = "1.27.1-00"
+CRI_VERSION = "1.27"
+OS = "xUbuntu_22.04"
+POD_CIDR = "172.16.3.0/16"
+SERVICE_CIDR = "172.17.3.0/18"
+
+Vagrant.configure("2") do |config|
+    
+    config.vm.define "k8s-master" do |master|
+        master.vm.box = IMAGE_NAME
+        master.vm.network "private_network", ip: API_SERVER_IP
+        master.vm.hostname = "#{CLUSTER_NAME}-k8s-control-plane"
+        master.vm.provider :virtualbox do |vb|
+            vb.name = "#{CLUSTER_NAME}-k8s-control-plane"
+            vb.memory = VM_MEMORY
+            vb.cpus = 2
+        end
+        master.vm.provision "master-common", type: "shell",
+         env: {
+            "API_SERVER_IP": API_SERVER_IP,
+            "DNS_SERVER": DNS_SERVER,
+            "KUBERNETES_VERSION": KUBERNETES_VERSION,
+            "CRI_VERSION": CRI_VERSION,
+            "CLUSTER_NAME": CLUSTER_NAME,
+            "OS": OS
+         },
+         path: "init/common.sh"
+         master.vm.provision "cluster-start", type: "shell",
+         env: {
+            "API_SERVER_IP": API_SERVER_IP,
+            "POD_CIDR": POD_CIDR,
+            "CLUSTER_NAME": CLUSTER_NAME,
+            "SERVICE_CIDR": SERVICE_CIDR
+         },
+         path: "init/master.sh"
+        #  master.vm.provision "resource-deploy", type: "shell", path: "init/deploy.sh"
+    end
+
+    (1..WORKER_NODES).each do |i|
+        config.vm.define "k8s-worker-#{i}" do |node|
+            node.vm.box = IMAGE_NAME
+            node.vm.network "private_network", ip: "#{WORKER_IP_RANGE}.#{i + 37}"
+            node.vm.hostname = "#{CLUSTER_NAME}-k8s-worker-node-#{i}"
+            node.vm.provider :virtualbox do |vb|
+                vb.name = "#{CLUSTER_NAME}-k8s-worker-node-#{i}"
+                vb.memory = VM_MEMORY
+                vb.cpus = 1
+            end
+            node.vm.provision "node-common", type: "shell",
+            env: {
+            "API_SERVER_IP": API_SERVER_IP,
+            "DNS_SERVER": DNS_SERVER,
+            "CLUSTER_NAME": CLUSTER_NAME,
+            "KUBERNETES_VERSION": KUBERNETES_VERSION,
+            "CRI_VERSION": CRI_VERSION,
+            "OS": OS
+         },
+         path: "init/common.sh"
+         node.vm.provision "node-setup", type: "shell",
+            env: {
+            "CLUSTER_NAME": CLUSTER_NAME
+         },
+         path: "init/node.sh"
+        end
+    end
+end
