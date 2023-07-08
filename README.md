@@ -128,3 +128,5 @@ yes
 [ ] Add firewall rules to block ports and see if it is possible to block outbound internet connection after the cluster inits. <br>
 [ ] Create a new user in the vagrant box and add the user to the cluster. Don't export the admin credentials outside the box. <br>
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>
+[ ] Fix the bug in gkeeper plugin and add couple of security controllers
+[ ] Add all the manifests after testing
