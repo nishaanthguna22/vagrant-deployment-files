@@ -1,6 +1,6 @@
 #  Getting started using Vagrant 
 
-Vagrant utilizes the 'Vagrantfile' found within a sub-folder of this repository to generate multiple virtual machines and perform various actions based on the configuration. These actions involve fetching the required operating system, packages, and performing installations and tweaking to set up the desired service. For specific instructions on alternative building methods, kindly refer to the corresponding sub-folder of the project.
+Vagrant utilizes the 'Vagrantfile' found within a sub-folder of this repository to generate multiple virtual machines and perform various actions based on the configuration. These actions involve fetching the required operating system, packages, and performing installations and tweaking to set up and initialize the desired service. For specific instructions on alternative building methods, kindly refer to the corresponding sub-folder of the project.
 
 By default, Vagrant establishes a shared folder named '/vagrant' that is accessible from the host machine. In many scripts, this mounted folder is utilized to transfer necessary files from the created operating system to the host machine for convenient accessibility.
 
