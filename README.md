@@ -1,5 +1,3 @@
-<div style='text-align: justify;'>
-
 #  Getting started using Vagrant 
 
 Vagrant utilizes the 'Vagrantfile' found within a sub-folder of this repository to generate multiple virtual machines and perform various actions based on the configuration. These actions involve fetching the required operating system, packages, and performing installations and tweaking to set up the desired service. For specific instructions on alternative building methods, kindly refer to the corresponding sub-folder of the project.
@@ -46,5 +44,3 @@ uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant),4(adm),24(cdrom),27(sud
 ## To be fixed
 [ ] Fix all the issues in `ToDo` comment of the the sub-directories
 [ ] Create a workflow for pushing changes to a temp repo -> lock the main branch
-
-</div>
