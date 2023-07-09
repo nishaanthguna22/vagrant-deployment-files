@@ -1,7 +1,0 @@
-node_join.sh
-admin.config
-.vagrant/
-certs/
-__pycache__/
-gkeeper/
-manifests/
