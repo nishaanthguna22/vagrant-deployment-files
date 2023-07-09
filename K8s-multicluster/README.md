@@ -1,3 +1,5 @@
+<div style='text-align: justify;'>
+
 # Kubernetes Cluster Setup using Vagrant 
 
 Once the virtualbox is created, using provisioning scripts, Kubernetes and CRI runtime is installed on all the N nodes. One of the nodes acts as the Kubernetes master aka control plane, while the two nodes join the cluster to act as workers. 
@@ -81,3 +83,5 @@ yes
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>
 [ ] Fix the bug in gkeeper plugin and add couple of security controllers <br>
 [ ] Add all the manifests after testing <br>
+
+</div>
