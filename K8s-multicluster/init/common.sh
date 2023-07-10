@@ -6,21 +6,6 @@ set -euxo pipefail
 # First APT update, add any software/repo sources you want at init 
 apt-get update -y
 
-# Disable SSH insecure defaults - https://superuser.com/questions/1485847/command-to-disable-password-login-via-ssh
-echo "[ ] Before updating SSH Config"
-cat /etc/ssh/sshd_config | grep -i PasswordAuthentication
-sed -E -i 's|^#?(PasswordAuthentication)\s.*|\1 no|' /etc/ssh/sshd_config
-if ! grep '^PasswordAuthentication\s' /etc/ssh/sshd_config; then echo 'PasswordAuthentication no' |sudo tee -a /etc/ssh/sshd_config; fi
-sed -E -i 's|^#?(PermitRootLogin)\s.*|\1 no|' /etc/ssh/sshd_config
- if ! grep '^PermitRootLogin\s' /etc/ssh/sshd_config; then echo 'PermitRootLogin no' |sudo tee -a /etc/ssh/sshd_config; fi
-echo "[ ] After updating SSH Config"
-cat /etc/ssh/sshd_config | grep -i PasswordAuthentication
-systemctl restart ssh
-echo "[ ] Restart complete"
-
-# Update /etc/hosts
-echo "${API_SERVER_IP} ${CLUSTER_NAME} >> /etc/hosts"
-
 # Turn swap off even during reboot
 swapoff -a
 (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
@@ -83,5 +68,6 @@ apt-get install -y jq kubelet="$KUBERNETES_VERSION" kubectl="$KUBERNETES_VERSION
 NODE_IP_ADDRESS=$(ip addr show dev eth1 | awk 'match($0,/inet (([0-9]|\.)+).* scope global eth1$/,a) { print a[1]; exit }')
 echo "Updating node ip matching eth1 interface:" $NODE_IP_ADDRESS
 echo "Environment=\"KUBELET_EXTRA_ARGS=--node-ip=$NODE_IP_ADDRESS\"" >> /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
 systemctl daemon-reload
 systemctl restart kubelet

@@ -41,7 +41,7 @@ vagrant
 uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
 ```
 
-## To be fixed
+## To Do
 [ ] Fix all the issues in `ToDo` comment of the the sub-directories <br>
-[ ] Create a workflow for pushing changes to a temp repo -> lock the main branch
-[ ] Nothing here!
+[ ] Create a workflow for pushing changes to a temp repo -> lock the main branch <br>
+[ ] Centralized Ingress Controller - https://ngrok.com/blog-post/ngrok-k8s 

@@ -2,6 +2,10 @@
 #
 set -euxo pipefail
 
+# Update /etc/hosts
+echo "${API_SERVER_IP} ${CLUSTER_NAME} >> /etc/hosts"
+# [ToDo] Check if this is reflected after build completes
+
 # control plane init and image pull
 kubeadm config images pull
 kubeadm init --apiserver-advertise-address=$API_SERVER_IP --apiserver-cert-extra-sans=$API_SERVER_IP --pod-network-cidr=$POD_CIDR --service-cidr=$SERVICE_CIDR --node-name=$CLUSTER_NAME --ignore-preflight-errors=all

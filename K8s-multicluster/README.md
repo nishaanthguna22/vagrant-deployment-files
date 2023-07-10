@@ -4,6 +4,8 @@ Once the virtualbox is created, using provisioning scripts, Kubernetes and CRI r
 
 *Note: Testing was done from a Windows machine with VirtualBox's adapter. It should work smoothly on other distros as well, tweak the version numbers, provider, vm runtime, network adapters if something isn't supported on your distro or doesn't work.*
 
+💀 Change the default vagrant user's password for all the boxes once they are created.
+
 ## Access to Kubernetes 
 
 If everything is running smoothly as intended, you should have a copy of the K8S cluster admin configuration and a token for joining the cluster as a worker node in the project directory after build succeeds.
@@ -75,7 +77,7 @@ yes
 
 ## Security
 
-[ ] Fuck knows why `PasswordAuthentication` disabled is not reflected during sshd restart. <br>
+[ ] Disable vagrant user and use a custom private key by default. <br>
 [ ] Add firewall rules to block ports and see if it is possible to block outbound internet connection after the cluster inits. <br>
 [ ] Create a new user in the vagrant box and add the user to the cluster. Don't export the admin credentials outside the box. <br>
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>
