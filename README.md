@@ -47,3 +47,4 @@ uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant),4(adm),24(cdrom),27(sud
 [ ] Workflow to prevent secrets into Git <br>
 [ ] Hello from Linus!!! <br>
 [ ] First commit - valid <br>
+[ ] Second commit - fake <br>
