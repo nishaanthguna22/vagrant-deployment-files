@@ -2,7 +2,7 @@ IMAGE_NAME = "bento/ubuntu-22.04"
 WORKER_NODES = 2
 WORKER_IP_RANGE = "192.168.13."
 API_SERVER_IP = "192.168.13.37"
-CLUSTER_NAME = "enron.corp.k8s.local"
+CLUSTER_NAME = "enron.corp.local"
 VM_MEMORY = "2048"
 DNS_SERVER = "1.1.1.1" 
 KUBERNETES_VERSION = "1.27.1-00"
@@ -12,7 +12,6 @@ POD_CIDR = "172.16.3.0/16"
 SERVICE_CIDR = "172.17.3.0/18"
 
 Vagrant.configure("2") do |config|
-    
     config.vm.define "k8s-master" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.network "private_network", ip: API_SERVER_IP
