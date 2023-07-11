@@ -45,4 +45,5 @@ uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant),4(adm),24(cdrom),27(sud
 [ ] Fix all the issues in `ToDo` comment of the the sub-directories <br>
 [ ] Create a workflow for pushing changes to a temp repo -> lock the main branch <br>
 [ ] Workflow to prevent secrets into Git <br>
-[ ] Hello from Linus!!!
+[ ] Hello from Linus!!! <br>
+[ ] First commit - valid <br>
