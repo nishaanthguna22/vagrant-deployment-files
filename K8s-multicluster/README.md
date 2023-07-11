@@ -83,3 +83,4 @@ yes
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>
 [ ] Fix the bug in gkeeper plugin and add couple of security controllers <br>
 [ ] Add all the manifests after testing <br>
+[ ] Add ngrok's centralized ingress controller - https://ngrok.com/blog-post/ngrok-k8s <br>
