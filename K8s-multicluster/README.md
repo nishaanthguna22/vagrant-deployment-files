@@ -77,7 +77,6 @@ yes
 
 ## Security
 
-[ ] Disable vagrant user and use a custom private key by default. <br>
 [ ] Add firewall rules to block ports and see if it is possible to block outbound internet connection after the cluster inits. <br>
 [ ] Create a new user in the vagrant box and add the user to the cluster. Don't export the admin credentials outside the box. <br>
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>

@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
         master.vm.provider :virtualbox do |vb|
             vb.name = "#{CLUSTER_NAME}-k8s-control-plane"
             vb.memory = VM_MEMORY
-            vb.cpus = 2 #tweak cpu and memory later
+            vb.cpus = 3 #tweak cpu and memory later
         end
         master.vm.provision "common", type: "shell", path: "init/common.sh"
     end

@@ -42,7 +42,9 @@ uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant),4(adm),24(cdrom),27(sud
 ```
 
 ## To Do
+[ ] Change default user, root user's creds with a custom built image
 [ ] Fix all the issues in `ToDo` comment of the the sub-directories <br>
 [ ] Create a workflow for pushing changes to a temp repo -> lock the main branch <br>
 [ ] Workflow to prevent secrets into Git <br>
 [ ] Pre-commit hooks <br>
+[ ] Create a task to rotate keys every N days <br>

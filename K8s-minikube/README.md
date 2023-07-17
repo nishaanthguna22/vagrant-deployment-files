@@ -1,37 +1,20 @@
 # Kubernetes Cluster Setup using Minikube on Vagrant 
     
-Once the virtualbox is created, using provisioning scripts, Kubernetes and docker runtime is installed on the node.
+Once the virtualbox is created, using provisioning scripts, minikube and docker runtime are installed on the node.
 
-💀 Change the default  and root user's password for all the boxes once they are created.
+💀 Change the default and root user's password for all the boxes once they are created.
 
 ## Access to Minikube Cluster 
 
-If everything is running smoothly as intended, you should have minikube up and running on the VM and the API Server exposed on port 8443.
+If everything runs smoothly, you should have minikube installed on the guest machine. Minikube spawns a K8s cluster by creating a VM (with it's own network) and the API Server is reachable from inside the Vagrant VM. SSH into the Vagrant box and initiate the cluster, once done credentials will be exported to the default user's directory.
 
 ```bash 
-$ minikube start
-😄  minikube v1.30.1 on Centos 8.5.2111
-✨  Automatically selected the docker driver. Other choices: none, ssh
+$ vagrant ssh k8s-master
+Last login: Mon Jul 17 18:25:14 2023 from 10.0.2.2
+[vagrant@enron ~]$
 
-🧯  The requested memory allocation of 1976MiB does not leave room for system overhead (total system memory: 1976MiB). You may face stability issues.
-💡  Suggestion: Start minikube with less memory allocated: 'minikube start --memory=1976mb'
-
-📌  Using Docker driver with root privileges
-👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-🔥  Creating docker container (CPUs=2, Memory=1976MB) ...
-🐳  Preparing Kubernetes v1.26.3 on Docker 23.0.2 ...
-    ▪ Generating certificates and keys ...
-    ▪ Booting up control plane ...
-    ▪ Configuring RBAC rules ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🔎  Verifying Kubernetes components...
-🌟  Enabled addons: default-storageclass, storage-provisioner
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+<add more>
 ```
-
-
 
 ## Project Structure
 
@@ -43,11 +26,12 @@ $ minikube start
 ├── init
 │   ├── common.sh   Commands to install dependencies, restart daemons, set up networking
 
-1 directory, 7 files
+1 directory, 3 files
 ```
 
 ## Security
 
-[ ] Disable vagrant user and use a custom private key by default. <br>
 [ ] Add firewall rules to block ports and see if it is possible to block outbound internet connection after the cluster inits. <br>
 [ ] Add container runtime checks and persist/start the daemons as non-root <br>
+[ ] Add more minikube commands <br>
+[ ] Check if K8s IP can be forwarded to the host <br>
